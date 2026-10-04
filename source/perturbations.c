@@ -7886,7 +7886,7 @@ int perturbations_total_stress_energy(
      */
     double p_tot = 0.;
     double p_tot_prime = 0.;
-    if ((pba->has_fld == _TRUE_ && pba->use_ppf == _TRUE_) || (pba->has_smg == _TRUE_ &&  pba->use_ppf == _TRUE_)) {
+    if ((pba->has_fld == _TRUE_ && pba->use_ppf == _TRUE_)) {
       /* Photons */
       p_tot += 1./3.*ppw->pvecback[pba->index_bg_rho_g];
       p_tot_prime += -3.*a_prime_over_a*(1. + 1./3.)*1./3.
@@ -8018,7 +8018,6 @@ int perturbations_total_stress_energy(
       ppw->delta_p += ppw->delta_p_fld;
 
       ppw->rho_plus_p_tot += (1.+w_fld)*ppw->pvecback[pba->index_bg_rho_fld];
-
     }
 
     /* don't add more species here, add them before the fluid contribution: because of the PPF scheme, the fluid must be the last one! */
@@ -9794,12 +9793,10 @@ int perturbations_print_variables(double tau,
         - 2./3.*pvecback[pba->index_bg_dV_scf]*pvecback[pba->index_bg_phi_prime_scf];
     }
     /* Lambda has constant pressure */
-    double H_T_prime;
-    H_T_prime = 3.*a*H/rho_plus_p_tot*(
-                  - ppw->delta_p
-                  + p_tot_prime*theta_tot/(k*k)
-                  + ppw->rho_plus_p_shear);
-    }
+    double H_T_prime = 3.*a*H/rho_plus_p_tot*(
+                        - ppw->delta_p
+                        + p_tot_prime*theta_tot/(k*k)
+                        + ppw->rho_plus_p_shear);
     class_store_double(dataptr, H_T_prime, _TRUE_, storeidx);
     /**************************/
     /* ^For use with CONCEPT^ */
