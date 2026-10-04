@@ -2667,6 +2667,21 @@ int background_output_data(
     class_store_double(dataptr,pvecback[pba->index_bg_D],_TRUE_,storeidx);
     class_store_double(dataptr,pvecback[pba->index_bg_f],_TRUE_,storeidx);
 
+    /************************/
+    /* For use with CONCEPT */
+    /************************/
+    class_store_double(dataptr, pvecback[pba->index_bg_D2], _TRUE_, storeidx);
+    class_store_double(dataptr, pvecback[pba->index_bg_f2], _TRUE_, storeidx);
+    class_store_double(dataptr, pvecback[pba->index_bg_D3a], _TRUE_, storeidx);
+    class_store_double(dataptr, pvecback[pba->index_bg_f3a], _TRUE_, storeidx);
+    class_store_double(dataptr, pvecback[pba->index_bg_D3b], _TRUE_, storeidx);
+    class_store_double(dataptr, pvecback[pba->index_bg_f3b], _TRUE_, storeidx);
+    class_store_double(dataptr, pvecback[pba->index_bg_D3c], _TRUE_, storeidx);
+    class_store_double(dataptr, pvecback[pba->index_bg_f3c], _TRUE_, storeidx);
+    /**************************/
+    /* ^For use with CONCEPT^ */
+    /**************************/
+
     class_store_double(dataptr,pvecback[pba->index_bg_varc_alpha],pba->has_varconst,storeidx);
     class_store_double(dataptr,pvecback[pba->index_bg_varc_me],pba->has_varconst,storeidx);
   }
