@@ -643,7 +643,7 @@ int background_functions(
     /**************************/
     /* ^For use with CONCEPT^ */
     /**************************/
-    
+
     /**- Varying fundamental constants */
     if (pba->has_varconst == _TRUE_) {
       class_call(background_varconst_of_z(pba,
@@ -952,6 +952,15 @@ int background_free_input(
     free(pba->M_ncdm);
     free(pba->T_ncdm);
     free(pba->ksi_ncdm);
+
+    /************************/
+    /* For use with CONCEPT */
+    /************************/
+    free(pba->growthfac_contrib_ncdm);
+    /**************************/
+    /* ^For use with CONCEPT^ */
+    /**************************/
+
     free(pba->deg_ncdm);
     free(pba->Omega0_ncdm);
     free(pba->m_ncdm_in_eV);
