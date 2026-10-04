@@ -2817,6 +2817,25 @@ int background_derivs(
   dy[pba->index_bi_D] = y[pba->index_bi_D_prime]/a/H;
   dy[pba->index_bi_D_prime] = -y[pba->index_bi_D_prime] + 1.5*a*rho_M*y[pba->index_bi_D]/H;
 
+  /************************/
+  /* For use with CONCEPT */
+  /************************/
+  /* Second-order growth factor */
+  dy[pba->index_bi_D2] = y[pba->index_bi_D2_prime]/a/H;
+  dy[pba->index_bi_D2_prime] = -y[pba->index_bi_D2_prime] + 1.5*a*rho_M*(y[pba->index_bi_D2] + pow(y[pba->index_bi_D], 2))/H;
+  /* Third-order growth factors */
+  dy[pba->index_bi_D3a] = y[pba->index_bi_D3a_prime]/a/H;
+  dy[pba->index_bi_D3a_prime] = -y[pba->index_bi_D3a_prime] + 1.5*a*rho_M*(y[pba->index_bi_D3a] + 2.*pow(y[pba->index_bi_D], 3))/H;
+  dy[pba->index_bi_D3b] = y[pba->index_bi_D3b_prime]/a/H;
+  dy[pba->index_bi_D3b_prime] = -y[pba->index_bi_D3b_prime] + 1.5*a*rho_M*(y[pba->index_bi_D3b] 
+      + 2.*y[pba->index_bi_D]*y[pba->index_bi_D2] + 2.*pow(y[pba->index_bi_D], 3))/H;
+  dy[pba->index_bi_D3c] = y[pba->index_bi_D3c_prime]/a/H;
+  dy[pba->index_bi_D3c_prime] = -y[pba->index_bi_D3c_prime]
+    + 1.5*a*rho_M*pow(y[pba->index_bi_D], 3)/H;
+  /**************************/
+  /* ^For use with CONCEPT^ */
+  /**************************/
+
   if (pba->has_dcdm == _TRUE_) {
     /** - compute dcdm density \f$ d\rho/dloga = -3 \rho - \Gamma/H \rho \f$*/
     dy[pba->index_bi_rho_dcdm] = -3.*y[pba->index_bi_rho_dcdm] - pba->Gamma_dcdm/H*y[pba->index_bi_rho_dcdm];
