@@ -92,6 +92,14 @@ struct background
                                             T_ncdm1/T_gamma; and its default value */
   double * ksi_ncdm, ksi_ncdm_default;   /**< list of 2nd parameters in p-s-d of non-cold relics: relative chemical potential
                                             ksi_ncdm1/T_ncdm1; and its default value */
+  /************************/
+  /* For use with CONCEPT */
+  /************************/
+  double * growthfac_contrib_ncdm;  /**< ncdm contribution factors for growth factors */
+  /**************************/
+  /* ^For use with CONCEPT^ */
+  /**************************/
+  
   double * deg_ncdm, deg_ncdm_default;    /**< vector of degeneracy parameters in factor of p-s-d: 1 for one family of neutrinos
                                              (= one neutrino plus its anti-neutrino, total g*=1+1=2, so deg = 0.5 g*); and its
                                              default value */
