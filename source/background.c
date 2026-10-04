@@ -1244,7 +1244,7 @@ int background_indices(
   /**************************/
   /* ^For use with CONCEPT^ */
   /**************************/
-  
+
   /* -> end of indices in the vector of variables to integrate */
   pba->bi_size = index_bi;
 
@@ -2060,7 +2060,19 @@ int background_solve(
   for (index_loga=0; index_loga < pba->bt_size; index_loga++) {
 
     pba->background_table[index_loga*pba->bg_size+pba->index_bg_D]*= 1./D_today;
-
+    
+    /************************/
+    /* For use with CONCEPT */
+    /************************/
+    // vp: Normalise higher order growth factors:
+    pba->background_table[index_loga*pba->bg_size+pba->index_bg_D2]*= pow(1./D_today,2);
+    pba->background_table[index_loga*pba->bg_size+pba->index_bg_D3a]*= pow(1./D_today,3);
+    pba->background_table[index_loga*pba->bg_size+pba->index_bg_D3b]*= pow(1./D_today,3);
+    pba->background_table[index_loga*pba->bg_size+pba->index_bg_D3c]*= pow(1./D_today,3);
+    /**************************/
+    /* ^For use with CONCEPT^ */
+    /**************************/
+    
     conformal_distance = pba->conformal_age - pba->tau_table[index_loga];
     pba->background_table[index_loga*pba->bg_size+pba->index_bg_conf_distance] = conformal_distance;
 
