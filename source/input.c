@@ -428,7 +428,7 @@ int input_read_from_file(struct file_content * pfc,
   /**************************/
   /* ^For use with CONCEPT^ */
   /**************************/
-  
+
   /** Find out if shooting necessary and, eventually, shoot and initialize
       read parameters */
   class_call(input_shooting(pfc,ppr,pba,pth,ppt,ptr,ppm,phr,pfo,ple,psd,pop,
@@ -2713,6 +2713,16 @@ int input_read_parameters_species(struct file_content * pfc,
     /** 5.f) Chemical potentials */
     /* Read */
     class_read_list_of_doubles_or_default("ksi_ncdm",pba->ksi_ncdm,pba->ksi_ncdm_default,N_ncdm);
+
+    /************************/
+    /* For use with CONCEPT */
+    /************************/
+    /* Read growth factor contribution of each ncdm species: */
+    class_read_list_of_doubles_or_default(
+      "growthfac_contrib_ncdm",pba->growthfac_contrib_ncdm,0.0,N_ncdm);
+    /**************************/
+    /* ^For use with CONCEPT^ */
+    /**************************/
 
     /** 5.g) Degeneracy of each ncdm species */
     /* Read */
