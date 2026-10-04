@@ -9548,7 +9548,15 @@ int perturbations_print_variables(double tau,
     }
 
     /* converting synchronous variables to newtonian ones */
-    if ((ppt->gauge == synchronous) && (ppt->get_perturbations_in_current_gauge == _FALSE_)) {
+
+    /************************/
+    /* For use with CONCEPT */
+    /************************/
+    /* Do not convert to Newtonian gauge */
+    if (0 == 1 ) {  /* ((ppt->gauge == synchronous) && (ppt->get_perturbations_in_current_gauge == _FALSE_)) { */
+    /**************************/
+    /* ^For use with CONCEPT^ */
+    /**************************/
 
       /* density and velocity perturbations (comment out if you wish to keep synchronous variables) */
 
