@@ -625,7 +625,25 @@ int background_functions(
 
     /** - velocity growth factor */
     pvecback[pba->index_bg_f] = pvecback_B[pba->index_bi_D_prime]/( pvecback_B[pba->index_bi_D]*a*pvecback[pba->index_bg_H]);
-
+    
+    /************************/
+    /* For use with CONCEPT */
+    /************************/
+    /*vp*/
+    /* - 2nd order growth factor and velocity growth factor */
+    pvecback[pba->index_bg_D2] = pvecback_B[pba->index_bi_D2];
+    pvecback[pba->index_bg_f2] = pvecback_B[pba->index_bi_D2_prime]/( pvecback_B[pba->index_bi_D2]*a*pvecback[pba->index_bg_H]);
+    /* - 3rd order growth factor and velocity growth factor */
+    pvecback[pba->index_bg_D3a] = pvecback_B[pba->index_bi_D3a];
+    pvecback[pba->index_bg_f3a] = pvecback_B[pba->index_bi_D3a_prime]/( pvecback_B[pba->index_bi_D3a]*a*pvecback[pba->index_bg_H]);
+    pvecback[pba->index_bg_D3b] = pvecback_B[pba->index_bi_D3b];
+    pvecback[pba->index_bg_f3b] = pvecback_B[pba->index_bi_D3b_prime]/( pvecback_B[pba->index_bi_D3b]*a*pvecback[pba->index_bg_H]);
+    pvecback[pba->index_bg_D3c] = pvecback_B[pba->index_bi_D3c];
+    pvecback[pba->index_bg_f3c] = pvecback_B[pba->index_bi_D3c_prime]/( pvecback_B[pba->index_bi_D3c]*a*pvecback[pba->index_bg_H]);
+    /**************************/
+    /* ^For use with CONCEPT^ */
+    /**************************/
+    
     /**- Varying fundamental constants */
     if (pba->has_varconst == _TRUE_) {
       class_call(background_varconst_of_z(pba,
