@@ -5995,6 +5995,14 @@ int input_default_params(struct background *pba,
   /** 5.f) ncdm chemical potential */
   pba->ksi_ncdm_default = 0.;
   pba->ksi_ncdm = NULL;
+
+  /* For use with CONCEPT */
+  /************************/
+  pba->growthfac_contrib_ncdm = NULL;
+  /**************************/
+  /* ^For use with CONCEPT^ */
+  /**************************/
+
   /** 5.g) ncdm degeneracy parameter */
   pba->deg_ncdm_default = 1.;
   pba->deg_ncdm = NULL;
