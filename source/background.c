@@ -2771,6 +2771,49 @@ int background_derivs(
     rho_M += pvecback[pba->index_bg_rho_idm];
   }
 
+  /************************/
+  /* For use with CONCEPT */
+  /************************/
+  /* Include dcdm in growth factors */
+  if (pba->has_dcdm == _TRUE_)
+    rho_M += pvecback[pba->index_bg_rho_dcdm];
+  /**
+   * Code for including the non-relativistic contribution from ncdm in
+   * growth factors. For small (realistic for neutrinos) ncdm masses,
+   * ncdm will only cluster on large, linear scales. Including ncdm
+   * when computing the scale-independent growth factors will then add
+   * a correction to all scales, which should really only be applied
+   * to large scales, greater than the free-streaming scale,
+   * see (96) in https://arxiv.org/abs/astro-ph/0603494
+   */
+  double rho_ncdm, p_ncdm;
+  int n_ncdm;
+  if (pba->has_ncdm == _TRUE_) {
+    for (n_ncdm = 0; n_ncdm < pba->N_ncdm; n_ncdm++) {
+      if (pba->growthfac_contrib_ncdm[n_ncdm] == 0.) {
+        continue;
+      }
+      class_call(background_ncdm_momenta(
+        pba->q_ncdm_bg[n_ncdm],
+        pba->w_ncdm_bg[n_ncdm],
+        pba->q_size_ncdm_bg[n_ncdm],
+        pba->M_ncdm[n_ncdm],
+        pba->factor_ncdm[n_ncdm],
+        1./a - 1.,
+        NULL,
+        &rho_ncdm,
+        &p_ncdm,
+        NULL,
+        NULL),
+        pba->error_message,
+        pba->error_message);
+      rho_M += pba->growthfac_contrib_ncdm[n_ncdm]*(rho_ncdm - 3.*p_ncdm);
+    }
+  }
+  /**************************/
+  /* ^For use with CONCEPT^ */
+  /**************************/
+
   dy[pba->index_bi_D] = y[pba->index_bi_D_prime]/a/H;
   dy[pba->index_bi_D_prime] = -y[pba->index_bi_D_prime] + 1.5*a*rho_M*y[pba->index_bi_D]/H;
 
