@@ -1,0 +1,23 @@
+[project]
+name = "class-4concept"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Vicente Pedreros Aballay", email = "71951212+vPedreros@users.noreply.github.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "ipykernel>=7.3.0",
+    "matplotlib>=3.10.9",
+    "numpy>=2.2.6",
+    "pip>=26.2.1",
+    "scipy>=1.15.3",
+]
+
+[project.scripts]
+class-4concept = "class_4concept:main"
+
+[build-system]
+requires = ["uv_build>=0.12.22,<0.13.0"]
+build-backend = "uv_build"

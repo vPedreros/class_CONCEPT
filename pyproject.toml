@@ -16,3 +16,8 @@ Homepage = "http://www.class-code.net"
 [build-system]
 requires = ['setuptools','wheel','numpy','cython']
 build-backend = "setuptools.build_meta"
+
+[tool.uv.workspace]
+members = [
+    "class_4concept",
+]
