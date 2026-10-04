@@ -1161,7 +1161,24 @@ int background_indices(
 
   /* -> velocity growth factor in dust universe */
   class_define_index(pba->index_bg_f,_TRUE_,index_bg,1);
-
+  
+  /************************/
+  /* For use with CONCEPT */
+  /************************/
+  /* Second-order growth factor and rate */
+  class_define_index(pba->index_bg_D2, _TRUE_, index_bg, 1);
+  class_define_index(pba->index_bg_f2, _TRUE_, index_bg, 1);
+  /* Third-order growth factors and rates */
+  class_define_index(pba->index_bg_D3a, _TRUE_, index_bg, 1);
+  class_define_index(pba->index_bg_f3a, _TRUE_, index_bg, 1);
+  class_define_index(pba->index_bg_D3b, _TRUE_, index_bg, 1);
+  class_define_index(pba->index_bg_f3b, _TRUE_, index_bg, 1);
+  class_define_index(pba->index_bg_D3c, _TRUE_, index_bg, 1);
+  class_define_index(pba->index_bg_f3c, _TRUE_, index_bg, 1);
+  /**************************/
+  /* ^For use with CONCEPT^ */
+  /**************************/
+  
   /* -> varying fundamental constant -- alpha (fine structure) */
   class_define_index(pba->index_bg_varc_alpha,pba->has_varconst,index_bg,1);
 
