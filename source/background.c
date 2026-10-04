@@ -2072,7 +2072,7 @@ int background_solve(
     /**************************/
     /* ^For use with CONCEPT^ */
     /**************************/
-    
+
     conformal_distance = pba->conformal_age - pba->tau_table[index_loga];
     pba->background_table[index_loga*pba->bg_size+pba->index_bg_conf_distance] = conformal_distance;
 
@@ -2397,6 +2397,33 @@ int background_initial_conditions(
   /** - set initial value of D and D' in RD. D and D' need only be set up to an overall constant, since they will later be re-normalized. From Ma&Bertschinger, one can derive D ~ (ktau)^2 at early times, from which one finds D'/D = 2 aH (assuming aH=1/tau during RD) */
   pvecback_integration[pba->index_bi_D] = 1.;
   pvecback_integration[pba->index_bi_D_prime] = 2.*a*pvecback[pba->index_bg_H];
+
+  /************************/
+  /* For use with CONCEPT */
+  /************************/
+  /* Use proper initial conditions for the growth factors */
+  double Omega0_M = pba->Omega0_b;
+  if (pba->has_cdm == _TRUE_)
+    Omega0_M += pba->Omega0_cdm;
+  if (pba->has_dcdm == _TRUE_)
+    Omega0_M += pba->Omega_ini_dcdm;  /* take dcdm into account */
+  double Omega0_R_eff = pow(a, 4)*pow(pvecback[pba->index_bg_H]/pba->H0, 2);  /* take all relativistic species into account */
+  double eps = 3./2.*Omega0_M/Omega0_R_eff*a;
+  double aH = a*pvecback[pba->index_bg_H];
+  double C = 1.0;  /* arbitrary */
+  pvecback_integration[pba->index_bi_D]         = pow(C, 1)   *(1. + 1.*eps + 1./4.*eps*eps);
+  pvecback_integration[pba->index_bi_D_prime]   = pow(C, 1)*aH*(0. + 1.*eps + 1./2.*eps*eps);
+  pvecback_integration[pba->index_bi_D2]        = pow(C, 2)   *(0. + 1.*eps + 3./4.*eps*eps);
+  pvecback_integration[pba->index_bi_D2_prime]  = pow(C, 2)*aH*(0. + 1.*eps + 3./2.*eps*eps);
+  pvecback_integration[pba->index_bi_D3a]       = pow(C, 3)   *(0. + 2.*eps + 2./1.*eps*eps);
+  pvecback_integration[pba->index_bi_D3a_prime] = pow(C, 3)*aH*(0. + 2.*eps + 4./1.*eps*eps);
+  pvecback_integration[pba->index_bi_D3b]       = pow(C, 3)   *(0. + 2.*eps + 5./2.*eps*eps);
+  pvecback_integration[pba->index_bi_D3b_prime] = pow(C, 3)*aH*(0. + 2.*eps + 5./1.*eps*eps);
+  pvecback_integration[pba->index_bi_D3c]       = pow(C, 3)   *(0. + 1.*eps + 3./4.*eps*eps);
+  pvecback_integration[pba->index_bi_D3c_prime] = pow(C, 3)*aH*(0. + 1.*eps + 3./2.*eps*eps);
+  /**************************/
+  /* ^For use with CONCEPT^ */
+  /**************************/
 
   /** - return the value finally chosen for the initial log(a) */
   *loga_ini = log(a);
