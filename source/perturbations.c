@@ -8413,6 +8413,18 @@ int perturbations_sources(
              error_message);
 
   a = ppw->pvecback[pba->index_bg_a];
+
+  /************************/
+	/* For use with CONCEPT */
+	/************************/
+  /* Only return output at late times */
+  double a_min = 3e-4;
+  if (a < a_min)
+    return _SUCCESS_;
+	/**************************/
+	/* ^For use with CONCEPT^ */
+	/**************************/
+
   a2 = a * a;
 
   a_prime_over_a = pvecback[pba->index_bg_a] * pvecback[pba->index_bg_H]; /* (a'/a)=aH */
