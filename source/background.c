@@ -2576,6 +2576,21 @@ int background_output_titles(
   class_store_columntitle(titles,"gr.fac. D",_TRUE_);
   class_store_columntitle(titles,"gr.fac. f",_TRUE_);
 
+  /************************/
+  /* For use with CONCEPT */
+  /************************/
+  class_store_columntitle(titles, "gr.fac. D2", _TRUE_);
+  class_store_columntitle(titles, "gr.fac. f2", _TRUE_);
+  class_store_columntitle(titles, "gr.fac. D3a", _TRUE_);
+  class_store_columntitle(titles, "gr.fac. f3a", _TRUE_);
+  class_store_columntitle(titles, "gr.fac. D3b", _TRUE_);
+  class_store_columntitle(titles, "gr.fac. f3b", _TRUE_);
+  class_store_columntitle(titles, "gr.fac. D3c", _TRUE_);
+  class_store_columntitle(titles, "gr.fac. f3c", _TRUE_);
+  /**************************/
+  /* ^For use with CONCEPT^ */
+  /**************************/
+
   class_store_columntitle(titles,"rel. alpha",pba->has_varconst);
   class_store_columntitle(titles,"rel. m_e",pba->has_varconst);
 
