@@ -1178,7 +1178,7 @@ int background_indices(
   /**************************/
   /* ^For use with CONCEPT^ */
   /**************************/
-  
+
   /* -> varying fundamental constant -- alpha (fine structure) */
   class_define_index(pba->index_bg_varc_alpha,pba->has_varconst,index_bg,1);
 
@@ -1228,7 +1228,23 @@ int background_indices(
   class_define_index(pba->index_bi_D,_TRUE_,index_bi,1);
   class_define_index(pba->index_bi_D_prime,_TRUE_,index_bi,1);
 
-
+  /************************/
+  /* For use with CONCEPT */
+  /************************/
+  /* -> Second-order equation for second-order growth factor */
+  class_define_index(pba->index_bi_D2, _TRUE_, index_bi, 1);
+  class_define_index(pba->index_bi_D2_prime, _TRUE_, index_bi, 1);
+  /* -> Third-order equations for third-order growth factors */
+  class_define_index(pba->index_bi_D3a, _TRUE_, index_bi, 1);
+  class_define_index(pba->index_bi_D3a_prime, _TRUE_, index_bi, 1);
+  class_define_index(pba->index_bi_D3b, _TRUE_, index_bi, 1);
+  class_define_index(pba->index_bi_D3b_prime, _TRUE_, index_bi, 1);
+  class_define_index(pba->index_bi_D3c, _TRUE_, index_bi, 1);
+  class_define_index(pba->index_bi_D3c_prime, _TRUE_, index_bi, 1);
+  /**************************/
+  /* ^For use with CONCEPT^ */
+  /**************************/
+  
   /* -> end of indices in the vector of variables to integrate */
   pba->bi_size = index_bi;
 
